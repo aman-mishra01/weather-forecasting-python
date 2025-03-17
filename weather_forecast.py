@@ -1,6 +1,7 @@
 import sys
 import requests
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QTextEdit, QLineEdit, QVBoxLayout, QMessageBox
+from dotenv import dotenv_values
 
 class WeatherForecastApp(QWidget):
     def __init__(self):
@@ -29,7 +30,7 @@ class WeatherForecastApp(QWidget):
     def fetch_weather(self):
         city = self.city_field.text().strip()
         # Visit https://openweathermap.org/api to generate your own api key. 
-        api_key = "Put your own API key here."
+        api_key = dotenv_values(".env")["API_KEY"]
         api_url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric"
         
         try:
